@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EvidenceRelay Band Demo</title>
+  <style>
+    :root { color-scheme: light; --ink: #17202a; --muted: #536273; --line: #d7dde5; --paper: #ffffff; --wash: #f4f7fa; --blue: #2563eb; --green: #047857; --amber: #b45309; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--wash); }
+    main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 64px; }
+    h1 { max-width: 880px; margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1.06; letter-spacing: 0; }
+    .eyebrow { margin: 0 0 12px; color: var(--blue); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0; }
+    .dek { max-width: 820px; margin: 18px 0 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }
+    .metric, article, .panel { min-width: 0; background: var(--paper); border: 1px solid var(--line); padding: 18px; }
+    .metric strong { display: block; color: var(--green); font-size: 32px; margin-bottom: 8px; }
+    .grid { min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .agents { min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    article h3 { margin: 0 0 8px; font-size: 18px; }
+    article p, .metric span, li p, .panel p { color: var(--muted); line-height: 1.55; }
+    article span { color: var(--blue); font-weight: 700; font-size: 13px; }
+    ol { margin: 0; padding-left: 20px; }
+    li { margin-bottom: 14px; }
+    li b { display: block; }
+    li span { color: var(--amber); font-size: 13px; font-weight: 700; }
+    pre { max-width: 100%; overflow-x: auto; margin: 0; padding: 16px; background: #17202a; color: #eff6ff; font-size: 13px; line-height: 1.45; }
+    @media (max-width: 780px) { .metrics, .grid, .agents { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Band of Agents backup submission</p>
+    <h1>EvidenceRelay Band shows four agents coordinating a verified incident-response handoff.</h1>
+    <p class="dek">This is a Band-compatible simulator: it proves the room model, shared context, handoffs, verifier gate, and human approval boundary while real Band account/API access remains gated.</p>
+    <section class="metrics">
+      <div class="metric"><strong>4</strong><span>cooperating agents</span></div>
+      <div class="metric"><strong>5</strong><span>room messages and handoffs</span></div>
+      <div class="metric"><strong>2</strong><span>verified incident findings</span></div>
+      <div class="metric"><strong>1</strong><span>human approval gate before response action</span></div>
+    </section>
+    <section class="grid">
+      <div class="panel">
+        <h2>Agent Room</h2>
+        <div class="agents"><article><h3>Triage Agent</h3><p>Extracts timeline, suspicious behaviors, MITRE hints, and open questions.</p><span>Evidence summarizer</span></article>
+<article><h3>Verifier Agent</h3><p>Blocks confirmed findings unless evidence IDs, tool-call IDs, and manifest state are present.</p><span>Claim gatekeeper</span></article>
+<article><h3>Response Lead Agent</h3><p>Converts verified findings into prioritized analyst actions and human approval gates.</p><span>Action planner</span></article>
+<article><h3>Comms Agent</h3><p>Writes a non-sensitive summary only after verifier approval.</p><span>Executive summary writer</span></article></div>
+      </div>
+      <div class="panel">
+        <h2>Room Timeline</h2>
+        <ol><li><b>01 triage</b><span>context_handoff</span><p>Loaded case windows-triage-mini-001 with 2 confirmed findings, 1 evidence artifact, and 6 hashed outputs.</p></li>
+<li><b>02 triage</b><span>finding_digest</span><p>F-001 Suspicious PowerShell execution maps to T1059.001, cites windows_triage_events:1024, and uses tool call cmd-0003.; F-002 Suspicious service installation maps to T1543.003, cites windows_triage_events:2048, and uses tool call cmd-0004.</p></li>
+<li><b>03 verifier</b><span>verification_gate</span><p>approved: all confirmed findings have evidence and tool references; manifest verification is expected to return ok=true before any incident response action is published.</p></li>
+<li><b>04 response</b><span>response_plan</span><p>Prioritize PowerShell process-tree collection, service binary preservation, lateral search for matching indicators, and a human approval gate before isolation.</p></li>
+<li><b>05 comms</b><span>executive_summary</span><p>Two verifier-backed behaviors need analyst review: encoded PowerShell from a document process and temp-path service persistence. No private data is included in this summary.</p></li></ol>
+      </div>
+      <div class="panel">
+        <h2>Boundary</h2>
+        <p>pending-user-gate: lablab/Band account access required before claiming real Band execution</p>
+      </div>
+      <div class="panel">
+        <h2>Transcript JSON</h2>
+        <pre>{
+  &quot;project&quot;: &quot;EvidenceRelay Band&quot;,
+  &quot;mode&quot;: &quot;band-compatible-simulator&quot;,
+  &quot;source_case&quot;: &quot;windows-triage-mini-001&quot;,
+  &quot;live_band_status&quot;: &quot;pending-user-gate: lablab/Band account access required before claiming real Band execution&quot;,
+  &quot;agents&quot;: [
+    {
+      &quot;agent_id&quot;: &quot;triage&quot;,
+      &quot;name&quot;: &quot;Triage Agent&quot;,
+      &quot;role&quot;: &quot;Evidence summarizer&quot;,
+      &quot;responsibility&quot;: &quot;Extracts timeline, suspicious behaviors, MITRE hints, and open questions.&quot;
+    },
+    {
+      &quot;agent_id&quot;: &quot;verifier&quot;,
+      &quot;name&quot;: &quot;Verifier Agent&quot;,
+      &quot;role&quot;: &quot;Claim gatekeeper&quot;,
+      &quot;responsibility&quot;: &quot;Blocks confirmed findings unless evidence IDs, tool-call IDs, and manifest state are present.&quot;
+    },
+    {
+      &quot;agent_id&quot;: &quot;response&quot;,
+      &quot;name&quot;: &quot;Response Lead Agent&quot;,
+      &quot;role&quot;: &quot;Action planner&quot;,
+      &quot;responsibility&quot;: &quot;Converts verified findings into prioritized analyst actions and human approval gates.&quot;
+    },
+    {
+      &quot;agent_id&quot;: &quot;comms&quot;,
+      &quot;name&quot;: &quot;Comms Agent&quot;,
+      &quot;role&quot;: &quot;Executive summary writer&quot;,
+      &quot;responsibility&quot;: &quot;Writes a non-sensitive summary only after verifier approval.&quot;
+    }
+  ],
+  &quot;messages&quot;: [
+    {
+      &quot;step&quot;: 1,
+      &quot;sender&quot;: &quot;triage&quot;,
+      &quot;message_type&quot;: &quot;context_handoff&quot;,
+      &quot;text&quot;: &quot;Loaded case windows-triage-mini-001 with 2 confirmed findings, 1 evidence artifact, and 6 hashed outputs.&quot;,
+      &quot;mentions&quot;: [
+        &quot;verifier&quot;,
+        &quot;response&quot;
+      ],
+      &quot;evidence_refs&quot;: [],
+      &quot;tool_refs&quot;: [],
+      &quot;approval_gate&quot;: false
+    },
+    {
+      &quot;step&quot;: 2,
+      &quot;sender&quot;: &quot;triage&quot;,
+      &quot;message_type&quot;: &quot;finding_digest&quot;,
+      &quot;text&quot;: &quot;F-001 Suspicious PowerShell execution maps to T1059.001, cites windows_triage_events:1024, and uses tool call cmd-0003.; F-002 Suspicious service installation maps to T1543.003, cites windows_triage_events:2048, and uses tool call cmd-0004.&quot;,
+      &quot;mentions&quot;: [
+        &quot;verifier&quot;
+      ],
+      &quot;evidence_refs&quot;: [
+        &quot;windows_triage_events:1024&quot;,
+        &quot;windows_triage_events:2048&quot;
+      ],
+      &quot;tool_refs&quot;: [
+        &quot;cmd-0003&quot;,
+        &quot;cmd-0004&quot;
+      ],
+      &quot;approval_gate&quot;: false
+    },
+    {
+      &quot;step&quot;: 3,
+      &quot;sender&quot;: &quot;verifier&quot;,
+      &quot;message_type&quot;: &quot;verification_gate&quot;,
+      &quot;text&quot;: &quot;approved: all confirmed findings have evidence and tool references; manifest verification is expected to return ok=true before any incident response action is published.&quot;,
+      &quot;mentions&quot;: [
+        &quot;response&quot;,
+        &quot;comms&quot;
+      ],
+      &quot;evidence_refs&quot;: [
+        &quot;windows-triage-mini-001&quot;
+      ],
+      &quot;tool_refs&quot;: [],
+      &quot;approval_gate&quot;: false
+    },
+    {
+      &quot;step&quot;: 4,
+      &quot;sender&quot;: &quot;response&quot;,
+      &quot;message_type&quot;: &quot;response_plan&quot;,
+      &quot;text&quot;: &quot;Prioritize PowerShell process-tree collection, service binary preservation, lateral search for matching indicators, and a human approval gate before isolation.&quot;,
+      &quot;mentions&quot;: [
+        &quot;comms&quot;
+      ],
+      &quot;evidence_refs&quot;: [],
+      &quot;tool_refs&quot;: [],
+      &quot;approval_gate&quot;: true
+    },
+    {
+      &quot;step&quot;: 5,
+      &quot;sender&quot;: &quot;comms&quot;,
+      &quot;message_type&quot;: &quot;executive_summary&quot;,
+      &quot;text&quot;: &quot;Two verifier-backed behaviors need analyst review: encoded PowerShell from a document process and temp-path service persistence. No private data is included in this summary.&quot;,
+      &quot;mentions&quot;: [
+        &quot;triage&quot;,
+        &quot;verifier&quot;,
+        &quot;response&quot;
+      ],
+      &quot;evidence_refs&quot;: [],
+      &quot;tool_refs&quot;: [],
+      &quot;approval_gate&quot;: false
+    }
+  ]
+}</pre>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

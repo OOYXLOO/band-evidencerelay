@@ -1,0 +1,106 @@
+{
+  "project": "EvidenceRelay Band",
+  "mode": "band-compatible-simulator",
+  "source_case": "windows-triage-mini-001",
+  "live_band_status": "pending-user-gate: lablab/Band account access required before claiming real Band execution",
+  "agents": [
+    {
+      "agent_id": "triage",
+      "name": "Triage Agent",
+      "role": "Evidence summarizer",
+      "responsibility": "Extracts timeline, suspicious behaviors, MITRE hints, and open questions."
+    },
+    {
+      "agent_id": "verifier",
+      "name": "Verifier Agent",
+      "role": "Claim gatekeeper",
+      "responsibility": "Blocks confirmed findings unless evidence IDs, tool-call IDs, and manifest state are present."
+    },
+    {
+      "agent_id": "response",
+      "name": "Response Lead Agent",
+      "role": "Action planner",
+      "responsibility": "Converts verified findings into prioritized analyst actions and human approval gates."
+    },
+    {
+      "agent_id": "comms",
+      "name": "Comms Agent",
+      "role": "Executive summary writer",
+      "responsibility": "Writes a non-sensitive summary only after verifier approval."
+    }
+  ],
+  "messages": [
+    {
+      "step": 1,
+      "sender": "triage",
+      "message_type": "context_handoff",
+      "text": "Loaded case windows-triage-mini-001 with 2 confirmed findings, 1 evidence artifact, and 6 hashed outputs.",
+      "mentions": [
+        "verifier",
+        "response"
+      ],
+      "evidence_refs": [],
+      "tool_refs": [],
+      "approval_gate": false
+    },
+    {
+      "step": 2,
+      "sender": "triage",
+      "message_type": "finding_digest",
+      "text": "F-001 Suspicious PowerShell execution maps to T1059.001, cites windows_triage_events:1024, and uses tool call cmd-0003.; F-002 Suspicious service installation maps to T1543.003, cites windows_triage_events:2048, and uses tool call cmd-0004.",
+      "mentions": [
+        "verifier"
+      ],
+      "evidence_refs": [
+        "windows_triage_events:1024",
+        "windows_triage_events:2048"
+      ],
+      "tool_refs": [
+        "cmd-0003",
+        "cmd-0004"
+      ],
+      "approval_gate": false
+    },
+    {
+      "step": 3,
+      "sender": "verifier",
+      "message_type": "verification_gate",
+      "text": "approved: all confirmed findings have evidence and tool references; manifest verification is expected to return ok=true before any incident response action is published.",
+      "mentions": [
+        "response",
+        "comms"
+      ],
+      "evidence_refs": [
+        "windows-triage-mini-001"
+      ],
+      "tool_refs": [],
+      "approval_gate": false
+    },
+    {
+      "step": 4,
+      "sender": "response",
+      "message_type": "response_plan",
+      "text": "Prioritize PowerShell process-tree collection, service binary preservation, lateral search for matching indicators, and a human approval gate before isolation.",
+      "mentions": [
+        "comms"
+      ],
+      "evidence_refs": [],
+      "tool_refs": [],
+      "approval_gate": true
+    },
+    {
+      "step": 5,
+      "sender": "comms",
+      "message_type": "executive_summary",
+      "text": "Two verifier-backed behaviors need analyst review: encoded PowerShell from a document process and temp-path service persistence. No private data is included in this summary.",
+      "mentions": [
+        "triage",
+        "verifier",
+        "response"
+      ],
+      "evidence_refs": [],
+      "tool_refs": [],
+      "approval_gate": false
+    }
+  ]
+}

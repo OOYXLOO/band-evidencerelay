@@ -1,0 +1,9 @@
+[project]
+name = "evidence-relay-band"
+version = "0.1.0"
+description = "Band-compatible multi-agent incident response room simulator."
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
