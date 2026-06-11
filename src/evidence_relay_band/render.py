@@ -6,6 +6,8 @@ from pathlib import Path
 
 from evidence_relay_band.models import RoomTranscript
 
+REPO_BLOB_BASE = "https://github.com/OOYXLOO/band-evidencerelay/blob/main"
+
 
 def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
     data = transcript.to_dict()
@@ -76,11 +78,11 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
       <div class="panel assets">
         <h2>Submission Assets</h2>
         <ol>
-          <li><a href="../docs/cover.png">Cover image</a></li>
-          <li><a href="../docs/cover.svg">Cover image source</a></li>
-          <li><a href="../docs/video_script.md">Video script</a></li>
-          <li><a href="../docs/pitch_deck.md">Pitch deck outline</a></li>
-          <li><a href="../docs/submission_checklist.md">Submission checklist</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/cover.png">Cover image</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/cover.svg">Cover image source</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/video_script.md">Video script</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/pitch_deck.md">Pitch deck outline</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/submission_checklist.md">Submission checklist</a></li>
         </ol>
       </div>
       <div class="panel">

@@ -22,8 +22,8 @@ multi-agent, incident-response, DFIR, enterprise-workflow, high-stakes-ai, verif
 
 ## Links To Fill
 
-- Public GitHub repository: pending
-- Demo app URL: pending
+- Public GitHub repository: https://github.com/OOYXLOO/band-evidencerelay
+- Demo app URL: https://ooyxloo.github.io/band-evidencerelay/
 - Video presentation: pending
 - Slide deck: pending
 

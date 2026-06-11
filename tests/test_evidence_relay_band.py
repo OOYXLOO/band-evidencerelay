@@ -54,6 +54,7 @@ class EvidenceRelayBandTests(unittest.TestCase):
             self.assertEqual(payload["project"], "EvidenceRelay Band")
             self.assertIn("EvidenceRelay Band Demo", html_path.read_text(encoding="utf-8"))
             self.assertIn("Submission Assets", html_path.read_text(encoding="utf-8"))
+            self.assertIn("github.com/OOYXLOO/band-evidencerelay", html_path.read_text(encoding="utf-8"))
             self.assertIn("Band-compatible simulator", summary_path.read_text(encoding="utf-8"))
 
     def test_submission_assets_are_present(self) -> None:
