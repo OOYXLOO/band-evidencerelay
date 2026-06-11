@@ -53,7 +53,18 @@ class EvidenceRelayBandTests(unittest.TestCase):
             payload = json.loads(transcript_path.read_text(encoding="utf-8"))
             self.assertEqual(payload["project"], "EvidenceRelay Band")
             self.assertIn("EvidenceRelay Band Demo", html_path.read_text(encoding="utf-8"))
+            self.assertIn("Submission Assets", html_path.read_text(encoding="utf-8"))
             self.assertIn("Band-compatible simulator", summary_path.read_text(encoding="utf-8"))
+
+    def test_submission_assets_are_present(self) -> None:
+        for relative in [
+            "docs/cover.png",
+            "docs/cover.svg",
+            "docs/video_script.md",
+            "docs/pitch_deck.md",
+            "docs/submission_checklist.md",
+        ]:
+            self.assertTrue((ROOT / relative).is_file(), relative)
 
     def test_no_secret_words_in_generated_transcript(self) -> None:
         transcript = simulate_room(EVIDENCELOCK)

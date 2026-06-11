@@ -31,6 +31,11 @@ Open `http://127.0.0.1:8765/`.
 - `build/transcript.json`: structured multi-agent room transcript.
 - `build/index.html`: static judge demo page.
 - `build/submission_summary.md`: Devpost/lablab submission copy starter.
+- `docs/cover.png`: 1280x720 upload-ready cover image.
+- `docs/cover.svg`: submission cover source.
+- `docs/video_script.md`: 90-second presentation script.
+- `docs/pitch_deck.md`: six-slide pitch deck outline.
+- `docs/submission_checklist.md`: remaining gates and final submission checklist.
 - `docs/verification.md`: local test and browser verification record.
 
 ## Integrity Boundary

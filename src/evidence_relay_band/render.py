@@ -9,8 +9,8 @@ from evidence_relay_band.models import RoomTranscript
 
 def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
     data = transcript.to_dict()
-    agent_cards = "\n".join(
-        f"<article><h3>{html.escape(agent['name'])}</h3><p>{html.escape(agent['responsibility'])}</p><span>{html.escape(agent['role'])}</span></article>"
+    agent_tiles = "\n".join(
+        f"<article class=\"tile\"><h3>{html.escape(agent['name'])}</h3><p>{html.escape(agent['responsibility'])}</p><span>{html.escape(agent['role'])}</span></article>"
         for agent in data["agents"]
     )
     message_rows = "\n".join(
@@ -33,18 +33,21 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
     .eyebrow {{ margin: 0 0 12px; color: var(--blue); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0; }}
     .dek {{ max-width: 820px; margin: 18px 0 0; color: var(--muted); font-size: 18px; line-height: 1.6; }}
     .metrics {{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }}
-    .metric, article, .panel {{ min-width: 0; background: var(--paper); border: 1px solid var(--line); padding: 18px; }}
+    .metric, .tile, .panel {{ min-width: 0; background: var(--paper); border: 1px solid var(--line); padding: 18px; }}
     .metric strong {{ display: block; color: var(--green); font-size: 32px; margin-bottom: 8px; }}
     .grid {{ min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }}
-    .agents {{ min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }}
-    article h3 {{ margin: 0 0 8px; font-size: 18px; }}
-    article p, .metric span, li p, .panel p {{ color: var(--muted); line-height: 1.55; }}
-    article span {{ color: var(--blue); font-weight: 700; font-size: 13px; }}
+    .agents {{ min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 28px; }}
+    .tile h3 {{ margin: 0 0 8px; font-size: 18px; }}
+    .tile p, .metric span, li p, .panel p {{ color: var(--muted); line-height: 1.55; }}
+    .tile span {{ color: var(--blue); font-weight: 700; font-size: 13px; }}
     ol {{ margin: 0; padding-left: 20px; }}
     li {{ margin-bottom: 14px; }}
     li b {{ display: block; }}
     li span {{ color: var(--amber); font-size: 13px; font-weight: 700; }}
     pre {{ max-width: 100%; overflow-x: auto; margin: 0; padding: 16px; background: #17202a; color: #eff6ff; font-size: 13px; line-height: 1.45; }}
+    .assets a {{ color: var(--blue); font-weight: 700; text-decoration: none; }}
+    .assets li {{ margin-bottom: 10px; }}
+    @media (max-width: 920px) {{ .agents {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }} }}
     @media (max-width: 780px) {{ .metrics, .grid, .agents {{ grid-template-columns: 1fr; }} }}
   </style>
 </head>
@@ -59,11 +62,8 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
       <div class="metric"><strong>2</strong><span>verified incident findings</span></div>
       <div class="metric"><strong>1</strong><span>human approval gate before response action</span></div>
     </section>
+    <section class="agents" aria-label="Agent roles">{agent_tiles}</section>
     <section class="grid">
-      <div class="panel">
-        <h2>Agent Room</h2>
-        <div class="agents">{agent_cards}</div>
-      </div>
       <div class="panel">
         <h2>Room Timeline</h2>
         <ol>{message_rows}</ol>
@@ -71,6 +71,17 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
       <div class="panel">
         <h2>Boundary</h2>
         <p>{html.escape(data['live_band_status'])}</p>
+        <p>Submission assets are ready locally: cover image, video script, pitch deck outline, and final checklist.</p>
+      </div>
+      <div class="panel assets">
+        <h2>Submission Assets</h2>
+        <ol>
+          <li><a href="../docs/cover.png">Cover image</a></li>
+          <li><a href="../docs/cover.svg">Cover image source</a></li>
+          <li><a href="../docs/video_script.md">Video script</a></li>
+          <li><a href="../docs/pitch_deck.md">Pitch deck outline</a></li>
+          <li><a href="../docs/submission_checklist.md">Submission checklist</a></li>
+        </ol>
       </div>
       <div class="panel">
         <h2>Transcript JSON</h2>
@@ -98,6 +109,7 @@ def render_submission_summary(transcript: RoomTranscript, out_dir: Path) -> Path
         "- Four agents collaborate around one verified incident-response evidence bundle.",
         "- The Verifier Agent blocks response planning until evidence IDs, tool-call IDs, and manifest state are present.",
         "- The Response Lead Agent creates actions only after verification and marks a human approval gate.",
+        "- Submission assets are ready locally: cover source, video script, pitch deck outline, and checklist.",
         "- The current demo is a Band-compatible simulator, not a claim of live Band API execution.",
         "",
         "## Human-Gated Upgrade",

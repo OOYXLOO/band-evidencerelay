@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="EvidenceRelay Band cover image">
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef6f2"/>
+    </linearGradient>
+    <style>
+      .bg{fill:url(#wash)}
+      .ink{fill:#17202a}
+      .muted{fill:#4f6275}
+      .blue{fill:#2563eb}
+      .green{fill:#047857}
+      .amber{fill:#b45309}
+      .line{stroke:#cbd5e1;stroke-width:3;fill:none}
+      .tile{fill:#ffffff;stroke:#cbd5e1;stroke-width:3;rx:8}
+      .label{font-family:Arial,Helvetica,sans-serif;font-size:28px;font-weight:700;letter-spacing:0}
+      .small{font-family:Arial,Helvetica,sans-serif;font-size:22px;letter-spacing:0}
+      .title{font-family:Arial,Helvetica,sans-serif;font-size:72px;font-weight:800;letter-spacing:0}
+      .subtitle{font-family:Arial,Helvetica,sans-serif;font-size:30px;letter-spacing:0}
+    </style>
+  </defs>
+  <rect width="1280" height="720" class="bg"/>
+  <text x="72" y="104" class="small blue" font-weight="700">BAND OF AGENTS BACKUP SUBMISSION</text>
+  <text x="72" y="190" class="title ink">EvidenceRelay Band</text>
+  <text x="72" y="244" class="subtitle muted">Verifier-gated multi-agent incident response</text>
+
+  <rect x="80" y="336" width="250" height="148" class="tile"/>
+  <circle cx="126" cy="386" r="18" class="blue"/>
+  <text x="158" y="395" class="label ink">Triage</text>
+  <text x="104" y="444" class="small muted">Summarize evidence</text>
+
+  <path d="M344 410 H416" class="line"/>
+  <path d="M402 394 L422 410 L402 426" class="line"/>
+
+  <rect x="438" y="336" width="250" height="148" class="tile"/>
+  <circle cx="484" cy="386" r="18" class="green"/>
+  <text x="516" y="395" class="label ink">Verifier</text>
+  <text x="462" y="444" class="small muted">Block weak claims</text>
+
+  <path d="M702 410 H774" class="line"/>
+  <path d="M760 394 L780 410 L760 426" class="line"/>
+
+  <rect x="796" y="336" width="250" height="148" class="tile"/>
+  <circle cx="842" cy="386" r="18" class="amber"/>
+  <text x="874" y="395" class="label ink">Response</text>
+  <text x="820" y="444" class="small muted">Plan after proof</text>
+
+  <rect x="438" y="548" width="250" height="96" class="tile"/>
+  <text x="478" y="607" class="label ink">Human approval gate</text>
+
+  <path d="M921 500 C921 548 700 596 704 596" class="line"/>
+  <path d="M718 580 L698 596 L720 611" class="line"/>
+
+  <rect x="80" y="548" width="250" height="96" class="tile"/>
+  <text x="114" y="607" class="label ink">Comms summary</text>
+
+  <path d="M438 596 H344" class="line"/>
+  <path d="M358 580 L338 596 L358 612" class="line"/>
+
+  <text x="72" y="676" class="small muted">Simulator now. Real Band adapter after lablab/Band access.</text>
+</svg>

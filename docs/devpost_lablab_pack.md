@@ -27,6 +27,15 @@ multi-agent, incident-response, DFIR, enterprise-workflow, high-stakes-ai, verif
 - Video presentation: pending
 - Slide deck: pending
 
+## Local Assets Ready For Upload
+
+- Cover image: `docs/cover.png`
+- Cover image source: `docs/cover.svg`
+- Video script: `docs/video_script.md`
+- Pitch deck outline: `docs/pitch_deck.md`
+- Submission checklist: `docs/submission_checklist.md`
+- Local demo page: `build/index.html`
+
 ## Demo Script
 
 1. Show the four agents in the room.
@@ -35,3 +44,7 @@ multi-agent, incident-response, DFIR, enterprise-workflow, high-stakes-ai, verif
 4. Show Response Lead Agent creating actions after the verifier gate.
 5. Show Comms Agent preparing a non-sensitive summary.
 6. Close with the boundary: live Band integration waits for user-gated access.
+
+## Judge Hook
+
+Most multi-agent demos optimize for autonomy. EvidenceRelay Band optimizes for accountable autonomy: the agents can triage, verify, plan, and communicate, but the response step stays blocked until claims are evidence-backed and a human approval gate is visible.
