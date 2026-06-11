@@ -27,7 +27,7 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EvidenceRelay Band Demo</title>
   <style>
-    :root {{ color-scheme: light; --ink: #17202a; --muted: #536273; --line: #d7dde5; --paper: #ffffff; --wash: #f4f7fa; --blue: #2563eb; --green: #047857; --amber: #b45309; }}
+    :root {{ color-scheme: light; --ink: #17202a; --muted: #536273; --line: #d7dde5; --paper: #ffffff; --wash: #f4f7fa; --blue: #2563eb; --green: #047857; --amber: #b45309; --red: #b42318; }}
     * {{ box-sizing: border-box; }}
     body {{ margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: var(--wash); }}
     main {{ width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 42px 0 64px; }}
@@ -46,18 +46,27 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
     li {{ margin-bottom: 14px; }}
     li b {{ display: block; }}
     li span {{ color: var(--amber); font-size: 13px; font-weight: 700; }}
+    .proof-strip {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }}
+    .proof {{ border-left: 4px solid var(--green); background: #eefbf6; padding: 14px; color: #0f3f31; font-weight: 700; line-height: 1.45; }}
+    .proof:nth-child(2) {{ border-color: var(--blue); background: #eff6ff; color: #163a7a; }}
+    .proof:nth-child(3) {{ border-color: var(--red); background: #fff1f0; color: #7a271a; }}
     pre {{ max-width: 100%; overflow-x: auto; margin: 0; padding: 16px; background: #17202a; color: #eff6ff; font-size: 13px; line-height: 1.45; }}
     .assets a {{ color: var(--blue); font-weight: 700; text-decoration: none; }}
     .assets li {{ margin-bottom: 10px; }}
     @media (max-width: 920px) {{ .agents {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }} }}
-    @media (max-width: 780px) {{ .metrics, .grid, .agents {{ grid-template-columns: 1fr; }} }}
+    @media (max-width: 780px) {{ .metrics, .grid, .agents, .proof-strip {{ grid-template-columns: 1fr; }} }}
   </style>
 </head>
 <body>
   <main>
-    <p class="eyebrow">Band of Agents backup submission</p>
+    <p class="eyebrow">Band of Agents public simulator submission</p>
     <h1>EvidenceRelay Band shows four agents coordinating a verified incident-response handoff.</h1>
     <p class="dek">This is a Band-compatible simulator: it proves the room model, shared context, handoffs, verifier gate, and human approval boundary while real Band account/API access remains gated.</p>
+    <section class="proof-strip" aria-label="Evaluator proof points">
+      <div class="proof">Four named agents share one durable room transcript.</div>
+      <div class="proof">Response planning starts only after verifier approval.</div>
+      <div class="proof">Live Band execution is not claimed until account access exists.</div>
+    </section>
     <section class="metrics">
       <div class="metric"><strong>{len(data['agents'])}</strong><span>cooperating agents</span></div>
       <div class="metric"><strong>{len(data['messages'])}</strong><span>room messages and handoffs</span></div>
@@ -73,15 +82,17 @@ def render_html(transcript: RoomTranscript, out_dir: Path) -> Path:
       <div class="panel">
         <h2>Boundary</h2>
         <p>{html.escape(data['live_band_status'])}</p>
-        <p>Submission assets are ready locally: cover image, video script, pitch deck outline, and final checklist.</p>
+        <p>Submission assets are ready locally: cover image, judge pack, video script, pitch deck, and final checklist.</p>
       </div>
       <div class="panel assets">
         <h2>Submission Assets</h2>
         <ol>
           <li><a href="{REPO_BLOB_BASE}/docs/cover.png">Cover image</a></li>
           <li><a href="{REPO_BLOB_BASE}/docs/cover.svg">Cover image source</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/judge_pack.md">Judge pack</a></li>
           <li><a href="{REPO_BLOB_BASE}/docs/video_script.md">Video script</a></li>
           <li><a href="{REPO_BLOB_BASE}/docs/pitch_deck.md">Pitch deck outline</a></li>
+          <li><a href="{REPO_BLOB_BASE}/docs/evidencerelay-band-pitch.pptx">Editable slide deck</a></li>
           <li><a href="{REPO_BLOB_BASE}/docs/submission_checklist.md">Submission checklist</a></li>
         </ol>
       </div>
@@ -111,7 +122,7 @@ def render_submission_summary(transcript: RoomTranscript, out_dir: Path) -> Path
         "- Four agents collaborate around one verified incident-response evidence bundle.",
         "- The Verifier Agent blocks response planning until evidence IDs, tool-call IDs, and manifest state are present.",
         "- The Response Lead Agent creates actions only after verification and marks a human approval gate.",
-        "- Submission assets are ready locally: cover source, video script, pitch deck outline, and checklist.",
+        "- Submission assets are ready locally: cover source, judge pack, video script, editable slide deck, and checklist.",
         "- The current demo is a Band-compatible simulator, not a claim of live Band API execution.",
         "",
         "## Human-Gated Upgrade",

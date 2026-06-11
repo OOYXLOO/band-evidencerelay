@@ -25,14 +25,17 @@ multi-agent, incident-response, DFIR, enterprise-workflow, high-stakes-ai, verif
 - Public GitHub repository: https://github.com/OOYXLOO/band-evidencerelay
 - Demo app URL: https://ooyxloo.github.io/band-evidencerelay/
 - Video presentation: pending
-- Slide deck: pending
+- Slide deck: `docs/evidencerelay-band-pitch.pptx`
+- Judge pack: `docs/judge_pack.md`
 
 ## Local Assets Ready For Upload
 
 - Cover image: `docs/cover.png`
 - Cover image source: `docs/cover.svg`
+- Judge pack: `docs/judge_pack.md`
 - Video script: `docs/video_script.md`
 - Pitch deck outline: `docs/pitch_deck.md`
+- Editable slide deck: `docs/evidencerelay-band-pitch.pptx`
 - Submission checklist: `docs/submission_checklist.md`
 - Local demo page: `build/index.html`
 

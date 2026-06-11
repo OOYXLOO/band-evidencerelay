@@ -9,12 +9,14 @@ Use this checklist after lablab/Band enrollment is available.
 - [x] Static judge demo page.
 - [x] Video script.
 - [x] Pitch deck outline.
+- [x] Editable pitch deck PPTX.
+- [x] Judge pack.
 - [x] Cover PNG.
 - [x] Cover SVG source.
+- [x] Public GitHub repository.
+- [x] Hosted demo URL.
 - [ ] Real lablab/Band enrollment.
 - [ ] Real Band account/API access or official no-code room proof.
-- [ ] Public GitHub repository.
-- [ ] Hosted demo URL.
 - [ ] Recorded video presentation.
 - [ ] Uploaded slide deck.
 - [ ] Final lablab submission.

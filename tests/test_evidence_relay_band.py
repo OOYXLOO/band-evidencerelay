@@ -54,6 +54,8 @@ class EvidenceRelayBandTests(unittest.TestCase):
             self.assertEqual(payload["project"], "EvidenceRelay Band")
             self.assertIn("EvidenceRelay Band Demo", html_path.read_text(encoding="utf-8"))
             self.assertIn("Submission Assets", html_path.read_text(encoding="utf-8"))
+            self.assertIn("docs/judge_pack.md", html_path.read_text(encoding="utf-8"))
+            self.assertIn("docs/evidencerelay-band-pitch.pptx", html_path.read_text(encoding="utf-8"))
             self.assertIn("github.com/OOYXLOO/band-evidencerelay", html_path.read_text(encoding="utf-8"))
             self.assertIn("Band-compatible simulator", summary_path.read_text(encoding="utf-8"))
 
@@ -63,6 +65,8 @@ class EvidenceRelayBandTests(unittest.TestCase):
             "docs/cover.svg",
             "docs/video_script.md",
             "docs/pitch_deck.md",
+            "docs/evidencerelay-band-pitch.pptx",
+            "docs/judge_pack.md",
             "docs/submission_checklist.md",
         ]:
             self.assertTrue((ROOT / relative).is_file(), relative)

@@ -1,8 +1,8 @@
 # EvidenceRelay Band
 
-EvidenceRelay Band is a Band of Agents hackathon backup project. It turns a verified incident-response evidence bundle into a multi-agent review room with explicit handoffs, shared context, and human approval gates.
+EvidenceRelay Band is a public simulator submission package for the Band of Agents hackathon. It turns a verified incident-response evidence bundle into a multi-agent review room with explicit handoffs, shared context, verifier gates, and human approval gates.
 
-Current status: local Band-compatible simulator. It does not claim live Band API usage yet. The adapter boundary is isolated so a real Band/Codeband integration can replace the simulator when account/API access is available.
+Current status: Band-compatible simulator with public demo assets. It does not claim live Band API usage yet. The adapter boundary is isolated so a real Band/Codeband integration can replace the simulator when account/API access is available.
 
 ## Why This Fits Band of Agents
 
@@ -34,7 +34,9 @@ Open `http://127.0.0.1:8765/`.
 - `docs/cover.png`: 1280x720 upload-ready cover image.
 - `docs/cover.svg`: submission cover source.
 - `docs/video_script.md`: 90-second presentation script.
-- `docs/pitch_deck.md`: six-slide pitch deck outline.
+- `docs/pitch_deck.md`: pitch deck source outline.
+- `docs/evidencerelay-band-pitch.pptx`: editable slide deck for lablab upload.
+- `docs/judge_pack.md`: one-page evaluator matrix.
 - `docs/submission_checklist.md`: remaining gates and final submission checklist.
 - `docs/verification.md`: local test and browser verification record.
 
